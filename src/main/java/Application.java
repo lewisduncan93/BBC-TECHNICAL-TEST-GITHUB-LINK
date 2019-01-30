@@ -17,26 +17,30 @@ import java.awt.event.MouseListener;
 
 public class Application implements MouseListener, ActionListener, Runnable {
 
-    public static final int WINDOW_WIDTH = 800;
-    public static final int WINDOW_HEIGHT = 800;
-    public long gameSpeed = 300;
+    private static int windowWidth = 800;
+    private static int windowHeight = 800;
+    private long gameSpeed = 300;
+    private boolean isRunning = false;
 
-    Grid grid = new Grid();
-    boolean isRunning = false;
-
-    JFrame frame = new JFrame("Game of Life");
-    JButton clearCellsButton = new JButton("Clear Cells");
-    JButton randomizeButton = new JButton("Random Cells");
-    JButton nextStepButton = new JButton("Next Step");
-    JButton startButton = new JButton("Start");
-    JButton stopButton = new JButton("Stop");
-
-    //JSlider speedSlider = new JSlider();
-
-    Container south = new Container();
+    private JFrame frame;
+    private Container south;
+    private Grid grid;
+    private JButton clearCellsButton, randomizeButton, nextStepButton, startButton, stopButton;
+    JSlider speedSlider = new JSlider();
 
     public Application() {
-        frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+        frame = new JFrame("Game of Life");
+        south = new Container();
+        grid = new Grid();
+
+
+        clearCellsButton = new JButton("Clear Cells");
+        randomizeButton = new JButton("Random Cells");
+        nextStepButton = new JButton("Next Step");
+        startButton = new JButton("Start");
+        stopButton = new JButton("Stop");
+
+        frame.setSize(windowWidth, windowHeight);
         frame.setLayout(new BorderLayout());
         frame.add(grid, BorderLayout.CENTER);
         grid.addMouseListener(this);
@@ -45,16 +49,23 @@ public class Application implements MouseListener, ActionListener, Runnable {
         south.setLayout(new GridLayout(1,5));
         south.add(clearCellsButton);
         clearCellsButton.addActionListener(this);
+        //clearCellsButton.setBackground(Color.decode("#00a5ff"));
+        clearCellsButton.setFocusPainted(false);
         south.add(randomizeButton);
         randomizeButton.addActionListener(this);
+        randomizeButton.setFocusPainted(false);
         south.add(nextStepButton);
         nextStepButton.addActionListener(this);
+        nextStepButton.setFocusPainted(false);
         south.add(startButton);
         startButton.addActionListener(this);
+        startButton.setFocusPainted(false);
         south.add(stopButton);
         stopButton.addActionListener(this);
+        stopButton.setFocusPainted(false);
         frame.add(south, BorderLayout.SOUTH);
 
+        frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
@@ -122,19 +133,26 @@ public class Application implements MouseListener, ActionListener, Runnable {
             isRunning = false;
             clearCellsButton();
         }
+        if (e.getSource().equals(randomizeButton)) {
+            if (isRunning == false) {
+                randomizeButton();
+            }
+        }
     }
 
-    public void clearCellsButton() {
+    private void clearCellsButton() {
         grid.clearCells(grid.updateCells());
         // Repaints the graphics
         frame.repaint();
     }
 
-    public void randomizeButton() {
-
+    private void randomizeButton() {
+        grid.randomCells(grid.updateCells());
+        // Repaints the graphics
+        frame.repaint();
     }
 
-    public void nextStepButton() {
+    private void nextStepButton() {
         // Checks neighbours method, passing the updated cells
         grid.checkNeighbours(grid.updateCells());
         // Repaints the graphics

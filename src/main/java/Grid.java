@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 
 /**
  * Grid creates a grid onto the application
@@ -12,13 +13,15 @@ import java.awt.*;
 public class Grid extends JPanel {
 
 
-    private final int NUMBER_OF_ROWS = 20;
-    private final int NUMBER_OF_COLUMNS = 20;
+    private static int numberOfRows = 20;
+    private static int numberOfColumns = 20;
     private double width;
     private double height;
     private int generation = 0;
 
-    boolean[][] cells = new boolean[NUMBER_OF_ROWS][NUMBER_OF_COLUMNS];
+    boolean[][] cells = new boolean[numberOfRows][numberOfColumns];
+
+    Random random = new Random();
 
     public boolean[][] updateCells() {
         return cells;
@@ -28,74 +31,72 @@ public class Grid extends JPanel {
         cells = newCells;
     }
 
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-
-        width = (double) this.getWidth() / cells[0].length;
-        height = (double) this.getHeight() / cells.length;
-
-        // Drawing the cells onto the grid
-        g.setColor(Color.ORANGE);
-        for (int row = 0; row < cells.length; row++) {
-            for (int column = 0; column < cells[0].length; column++) {
-                if (cells[row][column] == true) {
-                    g.fillRect((int) Math.round(column * width), (int) Math.round(row * height),
-                            (int) width + 1, (int) height + 1);
-                }
-            }
-        }
-
-        // Drawing the grid
-        g.setColor(Color.BLACK);
-        for (int x = 0; x < cells[0].length + 1; x++) {
-            g.drawLine((int) Math.round(x * width), 0, (int) (Math.round(x * width)), this.getHeight());
-        }
-        for (int y = 0; y < cells[0].length + 1; y++) {
-            g.drawLine(0, (int) Math.round(y * height), this.getWidth(), (int) Math.round(y * height));
-        }
-    }
-
     public void clearCells(boolean[][] cells) {
         for (int x = 0; x < cells.length; x++) {
-            for (int y = 0; y < cells[0].length; y++) {
+            for (int y = 0; y < cells.length; y++) {
                 cells[x][y] = false;
             }
         }
     }
 
+    public void randomCells(boolean[][] cells) {
+        for (int x = 0; x < cells.length; x++) {
+            for (int y = 0; y < cells.length; y++) {
+                cells[x][y] = random.nextBoolean();
+            }
+        }
+    }
+
+    public int getGeneration() {
+        return generation;
+    }
+
+    public void setGeneration(int generation) {
+        this.generation = generation;
+    }
+
+    public void nextGeneration(int generation) {
+        generation++;
+    }
+
     public void checkNeighbours(boolean[][] cells) {
         // New 2D boolean array for new cells
-        boolean[][] newCells = new boolean[cells.length][cells[0].length];
+        boolean[][] newCells = new boolean[cells.length][cells.length];
         for (int x = 0; x < cells.length; x++) {
-            for (int y = 0; y < cells[0].length; y++) {
+            for (int y = 0; y < cells.length; y++) {
+
                 int neighbours = 0;
-                // Checks top-left
-                if (x > 0 && y > 0 && cells[x - 1][y - 1] == true) {
-                    neighbours++;
-                }
+
                 // Checks left
                 if (x > 0 && cells[x - 1][y] == true) {
                     neighbours++;
                 }
-                // Checks bottom-left
-                if (x > 0 && y < cells[0].length - 1 && cells[x - 1][y + 1] == true){
+                // Checks right
+                if (x < cells.length - 1 && cells[x + 1][y] == true) {
                     neighbours++;
                 }
                 // Checks top
                 if (y > 0 && cells[x][y - 1] == true) {
                     neighbours++;
                 }
-
-                if (y < cells[0].length - 1 && cells[x][y + 1] == true) {
+                // Checks bottom
+                if (y < cells.length - 1 && cells[x][y + 1] == true) {
                     neighbours++;
                 }
+                // Checks top-left
+                if (x > 0 && y > 0 && cells[x - 1][y - 1] == true) {
+                    neighbours++;
+                }
+                // Checks top-right
                 if (x < cells.length - 1 && y > 0 && cells[x + 1][y - 1] == true) {
                     neighbours++;
                 }
-                if (x < cells.length - 1 && cells[x + 1][y] == true) {
+                // Checks bottom-left
+                if (x > 0 && y < cells.length - 1 && cells[x - 1][y + 1] == true){
                     neighbours++;
                 }
-                if (x < cells.length - 1 && y < cells[0].length - 1 && cells[x + 1][y + 1] == true) {
+                // Checks bottom-right
+                if (x < cells.length - 1 && y < cells.length - 1 && cells[x + 1][y + 1] == true) {
                     neighbours++;
                 }
 
@@ -125,4 +126,38 @@ public class Grid extends JPanel {
         // Update grid passing the newCells
         setNewCells(newCells);
     }
+
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        width = (double) this.getWidth() / cells.length;
+        height = (double) this.getHeight() / cells.length;
+
+
+        /* Drawing the grid */
+
+        // Draws the vertical lines
+        g.setColor(Color.BLACK);
+        for (int x = 0; x < cells.length + 1; x++) {
+            g.drawLine((int) Math.round(x * width), 0, (int) (Math.round(x * width)), this.getHeight());
+        }
+        // Draws the horizontal lines
+        for (int y = 0; y < cells.length + 1; y++) {
+            g.drawLine(0, (int) Math.round(y * height), this.getWidth(), (int) Math.round(y * height));
+        }
+
+
+        // Drawing the rectangles representing the live cells
+        g.setColor(Color.decode("#DE6918"));
+        for (int x = 0; x < cells.length; x++) {
+            for (int y = 0; y < cells.length; y++) {
+                if (cells[x][y] == true) {
+                    g.fillRect((int) Math.round(y * width), (int) Math.round(x * height),
+                            (int) width + 1, (int) height + 1);
+                }
+            }
+        }
+
+    }
+
 }
