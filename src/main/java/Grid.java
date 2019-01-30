@@ -18,7 +18,6 @@ import java.util.Random;
 
 public class Grid extends JPanel {
 
-
     private static int numberOfRows = 30;
     private static int numberOfColumns = 30;
     private double width;
@@ -131,7 +130,7 @@ public class Grid extends JPanel {
             }
         }
         // Update cells with newCells
-        cells = newCells;
+        this.cells = newCells;
         // Update grid passing the newCells
         setNewCells(newCells);
     }
@@ -153,7 +152,6 @@ public class Grid extends JPanel {
         for (int y = 0; y < cells.length + 1; y++) {
             g.drawLine(0, (int) Math.round(y * height), this.getWidth(), (int) Math.round(y * height));
         }
-
 
         // Drawing the rectangles representing the live cells
         g.setColor(Color.decode("#DE6918"));

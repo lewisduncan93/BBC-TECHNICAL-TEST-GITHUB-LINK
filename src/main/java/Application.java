@@ -18,9 +18,8 @@ import java.awt.event.MouseListener;
 
 public class Application implements MouseListener, ActionListener, Runnable {
 
-
-    private long gameSpeed = 300;
     private boolean isRunning = false;
+    private long gameSpeed = 300;
     private static int windowWidth = 800;
     private static int windowHeight = 800;
 
@@ -145,11 +144,21 @@ public class Application implements MouseListener, ActionListener, Runnable {
                 Thread thread = new Thread(this);
                 // Starts the thread
                 thread.start();
+                // Disable these buttons
+                nextStepButton.setEnabled(false);
+                clearCellsButton.setEnabled(false);
+                randomizeButton.setEnabled(false);
             }
         }
         // Perform action when stop button is pressed
         if (e.getSource().equals(stopButton)) {
-            isRunning = false;
+            if(isRunning) {
+                // Enable these buttons
+                nextStepButton.setEnabled(true);
+                clearCellsButton.setEnabled(true);
+                randomizeButton.setEnabled(true);
+                isRunning = false;
+            }
         }
         // Perform action when clear cells button is pressed
         if (e.getSource().equals(clearCellsButton)) {
