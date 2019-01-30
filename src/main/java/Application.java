@@ -7,9 +7,10 @@ import java.awt.event.MouseListener;
 
 /**
  * This program is a simulation of John Conway's Game of Life.
- * The application class contains the main method,
+ *
+ * The Application class contains the main method,
  * mouse listener and action listener, as well as the
- * implementation for the front end using AWT and Swing.
+ * implementation for the front-end GUI using AWT and Swing.
  *
  * @author Lewis Duncan
  *
@@ -17,18 +18,21 @@ import java.awt.event.MouseListener;
 
 public class Application implements MouseListener, ActionListener, Runnable {
 
-    private static int windowWidth = 800;
-    private static int windowHeight = 800;
+
     private long gameSpeed = 300;
     private boolean isRunning = false;
+    private static int windowWidth = 800;
+    private static int windowHeight = 800;
 
     private JFrame frame;
     private Container south;
     private Grid grid;
     private JButton clearCellsButton, randomizeButton, nextStepButton, startButton, stopButton;
-    JSlider speedSlider = new JSlider();
+    JSlider speedSlider;
 
     public Application() {
+        // Assigning new objects to reference variables
+        speedSlider = new JSlider();
         frame = new JFrame("Game of Life");
         south = new Container();
         grid = new Grid();
@@ -43,31 +47,42 @@ public class Application implements MouseListener, ActionListener, Runnable {
         frame.setLayout(new BorderLayout());
         frame.add(grid, BorderLayout.CENTER);
         grid.addMouseListener(this);
-
         frame.setResizable(false);
         south.setLayout(new GridLayout(1,5));
+
+        // Add clear cells button to south container
         south.add(clearCellsButton);
         clearCellsButton.addActionListener(this);
-        //clearCellsButton.setBackground(Color.decode("#00a5ff"));
         clearCellsButton.setFocusPainted(false);
+
+        // Add randomize button to south container
         south.add(randomizeButton);
         randomizeButton.addActionListener(this);
         randomizeButton.setFocusPainted(false);
+
+        // Add next step button to south container
         south.add(nextStepButton);
         nextStepButton.addActionListener(this);
         nextStepButton.setFocusPainted(false);
+
+        // Add start button to south container
         south.add(startButton);
         startButton.addActionListener(this);
         startButton.setFocusPainted(false);
+
+        // Add stop button to south container
         south.add(stopButton);
         stopButton.addActionListener(this);
         stopButton.setFocusPainted(false);
+
+        // Add south container to the frame and position it south
         frame.add(south, BorderLayout.SOUTH);
 
-        //frame.getContentPane().setBackground(Color.BLACK);
-
+        // Disable relative location so that it appears on the centre of the screen
         frame.setLocationRelativeTo(null);
+        // Once the JFrame is closed, call System.exit(0)
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // Set frame to visible
         frame.setVisible(true);
     }
 
@@ -126,7 +141,9 @@ public class Application implements MouseListener, ActionListener, Runnable {
         if (e.getSource().equals(startButton)) {
             if (isRunning == false) {
                 isRunning = true;
+                // Creates a new thread
                 Thread thread = new Thread(this);
+                // Starts the thread
                 thread.start();
             }
         }
@@ -137,28 +154,34 @@ public class Application implements MouseListener, ActionListener, Runnable {
         // Perform action when clear cells button is pressed
         if (e.getSource().equals(clearCellsButton)) {
             isRunning = false;
+            // Invokes clearCellsButton()
             clearCellsButton();
         }
         // Perform action when randomize button is pressed
         if (e.getSource().equals(randomizeButton)) {
             if (isRunning == false) {
+                // Invokes randomizeButton()
                 randomizeButton();
             }
         }
     }
 
+    // Clears the existing cells
     private void clearCellsButton() {
+        // Invokes clearCells() passing the updateCells() values
         grid.clearCells(grid.updateCells());
         // Repaints the graphics
         frame.repaint();
     }
 
+    // Creates a new random live cells
     private void randomizeButton() {
         grid.randomizeCells(grid.updateCells());
         // Repaints the graphics
         frame.repaint();
     }
 
+    // Goes to the next generation (next iteration)
     private void nextStepButton() {
         // Checks neighbours method, passing the updated cells
         grid.checkNeighbours(grid.updateCells());
@@ -167,8 +190,12 @@ public class Application implements MouseListener, ActionListener, Runnable {
     }
 
     @Override
+
+    // Runs when thread starts
     public void run() {
+        // While isRunning is true
         while(isRunning) {
+            // Invoke nextStepButton()
             nextStepButton();
             // Repaints the graphics
             frame.repaint();

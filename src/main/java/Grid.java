@@ -3,8 +3,14 @@ import java.awt.*;
 import java.util.Random;
 
 /**
- * Grid creates a grid onto the application
- * and also adds the relevant cells
+ * The Grid class carries out the back-end processes of the program.
+ *
+ * Graphical components are drawn, this is done using a paintComponent
+ * method from Swing. This class also creates a 2D array of booleans called cells
+ * and contains a method called checkNeighbour which applies Conway's Game of Life's
+ * rules to determine the outcome of the cells. If the cells are true or false it
+ * draws the relevant rectangles. There are several other methods such as updateCells,
+ * setNewCells, clearCells, radomizeCells, getGeneration and setGeneration.
  *
  * @author Lewis Duncan
  *
@@ -52,11 +58,8 @@ public class Grid extends JPanel {
     }
 
     public void setGeneration(int generation) {
-        this.generation = generation;
-    }
-
-    public void nextGeneration(int generation) {
         generation++;
+        this.generation = generation;
     }
 
     public void checkNeighbours(boolean[][] cells) {
