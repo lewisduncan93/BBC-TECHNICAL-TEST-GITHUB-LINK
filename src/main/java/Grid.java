@@ -57,10 +57,12 @@ public class Grid extends JPanel {
         }
     }
 
+    // Gets current generation
     public int getGeneration() {
         return generation;
     }
 
+    // Sets generation
     public void setGeneration(int generation) {
         generation++;
         this.generation = generation;
@@ -135,6 +137,7 @@ public class Grid extends JPanel {
         setNewCells(newCells);
     }
 
+    // Paints components
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
