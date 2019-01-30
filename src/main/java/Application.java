@@ -23,7 +23,7 @@ public class Application implements MouseListener, ActionListener, Runnable {
     private static int windowWidth = 800;
     private static int windowHeight = 800;
 
-    private JFrame frame;
+    private JFrame window;
     private Container south;
     private Grid grid;
     private JButton clearCellsButton, randomizeButton, nextStepButton, startButton, stopButton;
@@ -32,7 +32,7 @@ public class Application implements MouseListener, ActionListener, Runnable {
     public Application() {
         // Assigning new objects to reference variables
         speedSlider = new JSlider();
-        frame = new JFrame("Game of Life");
+        window = new JFrame("Game of Life");
         south = new Container();
         grid = new Grid();
 
@@ -42,11 +42,11 @@ public class Application implements MouseListener, ActionListener, Runnable {
         startButton = new JButton("Start");
         stopButton = new JButton("Stop");
 
-        frame.setSize(windowWidth, windowHeight);
-        frame.setLayout(new BorderLayout());
-        frame.add(grid, BorderLayout.CENTER);
+        window.setSize(windowWidth, windowHeight);
+        window.setLayout(new BorderLayout());
+        window.add(grid, BorderLayout.CENTER);
         grid.addMouseListener(this);
-        frame.setResizable(false);
+        window.setResizable(false);
         south.setLayout(new GridLayout(1,5));
 
         // Add clear cells button to south container
@@ -74,15 +74,15 @@ public class Application implements MouseListener, ActionListener, Runnable {
         stopButton.addActionListener(this);
         stopButton.setFocusPainted(false);
 
-        // Add south container to the frame and position it south
-        frame.add(south, BorderLayout.SOUTH);
+        // Add south container to the window and position it south
+        window.add(south, BorderLayout.SOUTH);
 
         // Disable relative location so that it appears on the centre of the screen
-        frame.setLocationRelativeTo(null);
+        window.setLocationRelativeTo(null);
         // Once the JFrame is closed, call System.exit(0)
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // Set frame to visible
-        frame.setVisible(true);
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // Set window to visible
+        window.setVisible(true);
     }
 
     @Override
@@ -112,7 +112,7 @@ public class Application implements MouseListener, ActionListener, Runnable {
         // Works out the opposite by assigning the value it already has and says NOT (as in opposite)
         grid.cells[row][column] = !grid.cells[row][column];
         // Repaints the graphics
-        frame.repaint();
+        window.repaint();
     }
 
     @Override
@@ -133,7 +133,7 @@ public class Application implements MouseListener, ActionListener, Runnable {
             if (isRunning == false) {
                 nextStepButton();
                 // Repaints the graphics
-                frame.repaint();
+                window.repaint();
             }
         }
         // Perform action when start button is pressed
@@ -180,14 +180,14 @@ public class Application implements MouseListener, ActionListener, Runnable {
         // Invokes clearCells() passing the updateCells() values
         grid.clearCells(grid.updateCells());
         // Repaints the graphics
-        frame.repaint();
+        window.repaint();
     }
 
     // Creates a new random live cells
     private void randomizeButton() {
         grid.randomizeCells(grid.updateCells());
         // Repaints the graphics
-        frame.repaint();
+        window.repaint();
     }
 
     // Goes to the next generation (next iteration)
@@ -195,7 +195,7 @@ public class Application implements MouseListener, ActionListener, Runnable {
         // Checks neighbours method, passing the updated cells
         grid.checkNeighbours(grid.updateCells());
         // Repaints the graphics
-        frame.repaint();
+        window.repaint();
     }
 
     @Override
@@ -207,7 +207,7 @@ public class Application implements MouseListener, ActionListener, Runnable {
             // Invoke nextStepButton()
             nextStepButton();
             // Repaints the graphics
-            frame.repaint();
+            window.repaint();
             try{
                 Thread.sleep(gameSpeed);
             } catch (Exception e){
