@@ -2,17 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e3e761f-4ce1-46c5-9a78-b84a9c513dde" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/Application.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/Example/Calculateur.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/Example/Case.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/Example/Main$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/Example/Main$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/Example/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/Grid.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/Grid.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/OldBackup/Application.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/OldBackup/Grid.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Application.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Grid.java" afterDir="false" />
     </list>
@@ -55,18 +44,18 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="13239" />
+          <entry key="JAVA" value="13480" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Application.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="24" column="25" lean-forward="true" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
+            <state relative-caret-position="325">
+              <caret line="28" column="40" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#mouseClicked#0;class#Application#0" />
@@ -78,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Grid.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="19" column="31" lean-forward="true" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+            <state relative-caret-position="266">
+              <caret line="15" column="39" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#781#782#0" expanded="true" />
@@ -427,8 +416,8 @@
         <option value="$PROJECT_DIR$/src/main/java/Cell.java" />
         <option value="$PROJECT_DIR$/src/main/java/OldBackup/Grid.java" />
         <option value="$PROJECT_DIR$/src/main/java/OldBackup/Application.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Grid.java" />
         <option value="$PROJECT_DIR$/src/main/java/Application.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Grid.java" />
       </list>
     </option>
   </component>
@@ -595,10 +584,24 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/Example/Calculateur.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/Cell.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/Example/Main.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="28" column="40" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#mouseClicked#0;class#Application#0" />
+            <element signature="method#mousePressed#0;class#Application#0" />
+            <element signature="method#mouseEntered#0;class#Application#0" />
+            <element signature="method#mouseExited#0;class#Application#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Grid.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="19" column="31" lean-forward="true" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+        <state relative-caret-position="266">
+          <caret line="15" column="39" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#781#782#0" expanded="true" />
@@ -611,20 +614,6 @@
             <element signature="e#1270#1271#0" expanded="true" />
             <element signature="e#1320#1321#0" expanded="true" />
             <element signature="e#1348#1349#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="24" column="25" lean-forward="true" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#mouseClicked#0;class#Application#0" />
-            <element signature="method#mousePressed#0;class#Application#0" />
-            <element signature="method#mouseEntered#0;class#Application#0" />
-            <element signature="method#mouseExited#0;class#Application#0" />
           </folding>
         </state>
       </provider>

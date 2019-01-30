@@ -33,7 +33,6 @@ public class Application implements MouseListener, ActionListener, Runnable {
         south = new Container();
         grid = new Grid();
 
-
         clearCellsButton = new JButton("Clear Cells");
         randomizeButton = new JButton("Random Cells");
         nextStepButton = new JButton("Next Step");
@@ -64,6 +63,8 @@ public class Application implements MouseListener, ActionListener, Runnable {
         stopButton.addActionListener(this);
         stopButton.setFocusPainted(false);
         frame.add(south, BorderLayout.SOUTH);
+
+        //frame.getContentPane().setBackground(Color.BLACK);
 
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -112,6 +113,8 @@ public class Application implements MouseListener, ActionListener, Runnable {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        // Perform action when next step button is pressed
         if (e.getSource().equals(nextStepButton)) {
             if (isRunning == false) {
                 nextStepButton();
@@ -119,6 +122,7 @@ public class Application implements MouseListener, ActionListener, Runnable {
                 frame.repaint();
             }
         }
+        // Perform action when start button is pressed
         if (e.getSource().equals(startButton)) {
             if (isRunning == false) {
                 isRunning = true;
@@ -126,13 +130,16 @@ public class Application implements MouseListener, ActionListener, Runnable {
                 thread.start();
             }
         }
+        // Perform action when stop button is pressed
         if (e.getSource().equals(stopButton)) {
             isRunning = false;
         }
+        // Perform action when clear cells button is pressed
         if (e.getSource().equals(clearCellsButton)) {
             isRunning = false;
             clearCellsButton();
         }
+        // Perform action when randomize button is pressed
         if (e.getSource().equals(randomizeButton)) {
             if (isRunning == false) {
                 randomizeButton();
@@ -147,7 +154,7 @@ public class Application implements MouseListener, ActionListener, Runnable {
     }
 
     private void randomizeButton() {
-        grid.randomCells(grid.updateCells());
+        grid.randomizeCells(grid.updateCells());
         // Repaints the graphics
         frame.repaint();
     }

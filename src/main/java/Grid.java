@@ -13,8 +13,8 @@ import java.util.Random;
 public class Grid extends JPanel {
 
 
-    private static int numberOfRows = 20;
-    private static int numberOfColumns = 20;
+    private static int numberOfRows = 30;
+    private static int numberOfColumns = 30;
     private double width;
     private double height;
     private int generation = 0;
@@ -39,7 +39,7 @@ public class Grid extends JPanel {
         }
     }
 
-    public void randomCells(boolean[][] cells) {
+    public void randomizeCells(boolean[][] cells) {
         for (int x = 0; x < cells.length; x++) {
             for (int y = 0; y < cells.length; y++) {
                 cells[x][y] = random.nextBoolean();
@@ -132,7 +132,6 @@ public class Grid extends JPanel {
 
         width = (double) this.getWidth() / cells.length;
         height = (double) this.getHeight() / cells.length;
-
 
         /* Drawing the grid */
 
