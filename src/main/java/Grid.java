@@ -66,7 +66,6 @@ public class Grid extends JPanel {
     // Resets generation
     public void resetGeneration() {
         generation = 0;
-        this.generation = generation;
     }
 
     // Gets current generation
