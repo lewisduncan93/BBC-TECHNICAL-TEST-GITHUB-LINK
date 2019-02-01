@@ -57,15 +57,21 @@ public class Grid extends JPanel {
         }
     }
 
-    // Gets current generation
-    public int getGeneration() {
-        return generation;
-    }
-
     // Sets generation
     public void setGeneration(int generation) {
         generation++;
         this.generation = generation;
+    }
+
+    // Resets generation
+    public void resetGeneration() {
+        generation = 0;
+        this.generation = generation;
+    }
+
+    // Gets current generation
+    public int getGeneration() {
+        return generation;
     }
 
     // Checks for any other live cells and adds to an integer called neighbours

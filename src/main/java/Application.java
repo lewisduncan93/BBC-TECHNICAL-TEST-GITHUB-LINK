@@ -24,17 +24,21 @@ public class Application implements MouseListener, ActionListener, Runnable {
     private static int windowHeight = 800;
 
     private JFrame window;
-    private Container south;
+    private Container north, south;
     private Grid grid;
     private JButton clearCellsButton, randomizeButton, nextStepButton, startButton, stopButton;
-    JSlider speedSlider;
+    private JSlider speedSlider;
+    private JLabel generationLabel;
 
     public Application() {
-        // Assigning new objects to reference variables
-        speedSlider = new JSlider();
+
         window = new JFrame("Game of Life");
+        north = new Container();
         south = new Container();
         grid = new Grid();
+
+        speedSlider = new JSlider();
+        generationLabel = new JLabel();
 
         clearCellsButton = new JButton("Clear Cells");
         randomizeButton = new JButton("Random Cells");
@@ -47,6 +51,17 @@ public class Application implements MouseListener, ActionListener, Runnable {
         window.add(grid, BorderLayout.CENTER);
         grid.addMouseListener(this);
         window.setResizable(false);
+
+        // Set north container layout
+        north.setLayout(new GridLayout(1,1));
+
+        // Add generation label to north container
+        north.add(generationLabel, SwingConstants.CENTER);
+        generationLabel.setText("Generation: " + grid.getGeneration());
+        generationLabel.setFont(new Font("Arial", Font.PLAIN, 18));
+        //generationLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+
+        // Set south container layout
         south.setLayout(new GridLayout(1,5));
 
         // Add clear cells button to south container
@@ -74,6 +89,8 @@ public class Application implements MouseListener, ActionListener, Runnable {
         stopButton.addActionListener(this);
         stopButton.setFocusPainted(false);
 
+        // Add north container to the window and position it north
+        window.add(north, BorderLayout.NORTH);
         // Add south container to the window and position it south
         window.add(south, BorderLayout.SOUTH);
 
@@ -179,6 +196,10 @@ public class Application implements MouseListener, ActionListener, Runnable {
     private void clearCellsButton() {
         // Invokes clearCells() passing the updateCells() values
         grid.clearCells(grid.updateCells());
+        // Invokes resetGeneration()
+        grid.resetGeneration();
+        // Sets text on generationLabel
+        generationLabel.setText("Generation: " + grid.getGeneration());
         // Repaints the graphics
         window.repaint();
     }
@@ -186,21 +207,28 @@ public class Application implements MouseListener, ActionListener, Runnable {
     // Creates a new random live cells
     private void randomizeButton() {
         grid.randomizeCells(grid.updateCells());
+        // Invokes resetGeneration()
+        grid.resetGeneration();
+        // Sets text on generationLabel
+        generationLabel.setText("Generation: " + grid.getGeneration());
         // Repaints the graphics
         window.repaint();
     }
 
     // Goes to the next generation (next iteration)
     private void nextStepButton() {
-        // Checks neighbours method, passing the updated cells
+        // Invokes checkNeighbours(), passing the updated cells
         grid.checkNeighbours(grid.updateCells());
+        // Invokes setGeneration()
+        grid.setGeneration(grid.getGeneration());
+        // Sets text on generationLabel
+        generationLabel.setText("Generation: " + grid.getGeneration());
         // Repaints the graphics
         window.repaint();
     }
 
-    @Override
-
     // Runs when thread starts
+    @Override
     public void run() {
         // While isRunning is true
         while(isRunning) {
