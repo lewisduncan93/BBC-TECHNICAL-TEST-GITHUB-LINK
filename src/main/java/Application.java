@@ -36,8 +36,10 @@ public class Application implements MouseListener, ActionListener, Runnable {
         south = new Container();
         grid = new Grid();
 
+        // A label
         generationLabel = new JLabel();
 
+        // Several buttons
         clearCellsButton = new JButton("Clear Cells");
         randomizeButton = new JButton("Random Cells");
         nextStepButton = new JButton("Next Step");
