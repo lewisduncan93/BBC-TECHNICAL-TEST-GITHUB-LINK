@@ -142,7 +142,7 @@ public class Grid extends JPanel {
         setNewCells(newCells);
     }
 
-    // Paints components
+    // Paints graphical components
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
