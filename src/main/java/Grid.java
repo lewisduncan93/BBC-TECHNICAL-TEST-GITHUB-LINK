@@ -171,7 +171,6 @@ public class Grid extends JPanel {
                 }
             }
         }
-
     }
 
 }

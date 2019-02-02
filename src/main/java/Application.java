@@ -27,7 +27,6 @@ public class Application implements MouseListener, ActionListener, Runnable {
     private Container north, south;
     private Grid grid;
     private JButton clearCellsButton, randomizeButton, nextStepButton, startButton, stopButton;
-    private JSlider speedSlider;
     private JLabel generationLabel;
 
     public Application() {
@@ -37,7 +36,6 @@ public class Application implements MouseListener, ActionListener, Runnable {
         south = new Container();
         grid = new Grid();
 
-        speedSlider = new JSlider();
         generationLabel = new JLabel();
 
         clearCellsButton = new JButton("Clear Cells");
@@ -59,20 +57,9 @@ public class Application implements MouseListener, ActionListener, Runnable {
         north.add(generationLabel, SwingConstants.CENTER);
         generationLabel.setText("Generation: " + grid.getGeneration());
         generationLabel.setFont(new Font("Arial", Font.PLAIN, 18));
-        //generationLabel.setHorizontalTextPosition(SwingConstants.CENTER);
 
         // Set south container layout
         south.setLayout(new GridLayout(1,5));
-
-        // Add clear cells button to south container
-        south.add(clearCellsButton);
-        clearCellsButton.addActionListener(this);
-        clearCellsButton.setFocusPainted(false);
-
-        // Add randomize button to south container
-        south.add(randomizeButton);
-        randomizeButton.addActionListener(this);
-        randomizeButton.setFocusPainted(false);
 
         // Add next step button to south container
         south.add(nextStepButton);
@@ -88,6 +75,16 @@ public class Application implements MouseListener, ActionListener, Runnable {
         south.add(stopButton);
         stopButton.addActionListener(this);
         stopButton.setFocusPainted(false);
+
+        // Add clear cells button to south container
+        south.add(clearCellsButton);
+        clearCellsButton.addActionListener(this);
+        clearCellsButton.setFocusPainted(false);
+
+        // Add randomize button to south container
+        south.add(randomizeButton);
+        randomizeButton.addActionListener(this);
+        randomizeButton.setFocusPainted(false);
 
         // Add north container to the window and position it north
         window.add(north, BorderLayout.NORTH);
