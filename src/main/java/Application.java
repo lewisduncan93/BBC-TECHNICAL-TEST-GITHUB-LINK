@@ -241,6 +241,7 @@ public class Application implements MouseListener, ActionListener, Runnable {
         }
     }
 
+    // Main method runs a new Application()
     public static void main(String[] args) {
         new Application();
     }
