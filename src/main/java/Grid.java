@@ -24,7 +24,7 @@ public class Grid extends JPanel {
     private double height;
     private int generation = 0;
 
-    // New 2D array of boolean called cells containing the size of rows and columns
+    // A new 2D array of type boolean called cells
     boolean[][] cells = new boolean[numberOfRows][numberOfColumns];
 
     Random random = new Random();
