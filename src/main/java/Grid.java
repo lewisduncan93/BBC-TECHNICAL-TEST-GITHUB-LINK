@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 import java.util.Random;
 
 /**
@@ -20,8 +19,6 @@ public class Grid extends JPanel {
 
     private static int numberOfRows = 30;
     private static int numberOfColumns = 30;
-    private double width;
-    private double height;
     private int generation = 0;
 
     // A new 2D array of type boolean called cells
@@ -144,37 +141,6 @@ public class Grid extends JPanel {
         this.cells = newCells;
         // Update grid passing the newCells
         setNewCells(newCells);
-    }
-
-    // Paints graphical components
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-
-        width = (double) this.getWidth() / cells.length;
-        height = (double) this.getHeight() / cells.length;
-
-        /* Drawing the grid */
-
-        // Draws the vertical lines
-        g.setColor(Color.BLACK);
-        for (int x = 0; x < cells.length + 1; x++) {
-            g.drawLine((int) Math.round(x * width), 0, (int) (Math.round(x * width)), this.getHeight());
-        }
-        // Draws the horizontal lines
-        for (int y = 0; y < cells.length + 1; y++) {
-            g.drawLine(0, (int) Math.round(y * height), this.getWidth(), (int) Math.round(y * height));
-        }
-
-        // Drawing the rectangles representing the live cells
-        g.setColor(Color.decode("#DE6918"));
-        for (int x = 0; x < cells.length; x++) {
-            for (int y = 0; y < cells.length; y++) {
-                if (cells[x][y] == true) {
-                    g.fillRect((int) Math.round(y * width), (int) Math.round(x * height),
-                            (int) width + 1, (int) height + 1);
-                }
-            }
-        }
     }
 
 }
