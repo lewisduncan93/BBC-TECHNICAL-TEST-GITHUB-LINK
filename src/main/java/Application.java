@@ -23,6 +23,7 @@ public class Application implements MouseListener, ActionListener, Runnable {
     private static int windowWidth = 800;
     private static int windowHeight = 800;
 
+    // Declaration of objects
     private JFrame window;
     private Container north, south;
     private Grid grid;
@@ -31,6 +32,7 @@ public class Application implements MouseListener, ActionListener, Runnable {
 
     public Application() {
 
+        // Initialization of objects
         window = new JFrame("Game of Life");
         north = new Container();
         south = new Container();
@@ -44,10 +46,15 @@ public class Application implements MouseListener, ActionListener, Runnable {
         startButton = new JButton("Start");
         stopButton = new JButton("Stop");
 
+        // Set window size
         window.setSize(windowWidth, windowHeight);
+        // Set window layout
         window.setLayout(new BorderLayout());
+        // Set window border layout
         window.add(grid, BorderLayout.CENTER);
+        // Register for mouse events on grid
         grid.addMouseListener(this);
+        // Disable window resizable
         window.setResizable(false);
 
         // Set north container layout
@@ -241,8 +248,9 @@ public class Application implements MouseListener, ActionListener, Runnable {
         }
     }
 
-    // Main method runs a new Application()
+    // Main method
     public static void main(String[] args) {
+        // Instantiate Application()
         new Application();
     }
 }
