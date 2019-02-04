@@ -11,6 +11,8 @@ import java.awt.event.MouseListener;
  * The Application class contains the main method,
  * mouse listener and action listener, as well as the
  * implementation for the front-end GUI using AWT and Swing.
+ * Graphical components are also drawn. This is done using a
+ * method from Swing called paintComponent. 
  *
  * @author Lewis Duncan
  *
