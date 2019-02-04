@@ -116,21 +116,25 @@ public class Grid extends JPanel {
                 }
 
                 /* Conway's Game of Life */
-
-                // If alive cell has 2 or 3 neighbours then it stays alive, else dead
+                // If this cell is alive (true)
                 if (cells[x][y] == true) {
+                    // If alive cell has 2 or 3 neighbours then it stays alive, else dead
                     if (neighbours == 2 || neighbours == 3) {
+                        // Set this new cell to true
                         newCells[x][y] = true;
                     }
                     else {
+                        // Else set this new cell to false
                         newCells[x][y] = false;
                     }
                 }
-                // If dead cell has 3 neighbours then create new cell, else dead
                 else {
+                    // If dead cell has 3 neighbours then create new cell, else dead
                     if (neighbours == 3) {
+                        // Set this new cell to true
                         newCells[x][y] = true;
                     } else {
+                        // Else set this new cell to false
                         newCells[x][y] = false;
                     }
                 }
