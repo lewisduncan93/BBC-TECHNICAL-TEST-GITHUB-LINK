@@ -7,7 +7,7 @@ import java.util.Random;
  * This class also creates a 2D array of booleans called cells
  * and contains a method called checkNeighbour which applies Conway's Game of Life's
  * rules to determine the outcome of the cells. There are several other methods such as updateCells,
- * setNewCells, clearCells, radomizeCells, getGeneration and setGeneration.
+ * setNewCells, clearCells, radomizeCells, setGeneration getGeneration and resetGeneration.
  *
  * @author Lewis Duncan
  *
