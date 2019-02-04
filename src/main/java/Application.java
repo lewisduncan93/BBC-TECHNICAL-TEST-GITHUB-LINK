@@ -16,10 +16,12 @@ import java.awt.event.MouseListener;
  *
  */
 
-public class Application implements MouseListener, ActionListener, Runnable {
+public class Application extends JPanel implements MouseListener, ActionListener, Runnable {
 
     private boolean isRunning = false;
     private long gameSpeed = 300;
+    private double width;
+    private double height;
     private static int windowWidth = 800;
     private static int windowHeight = 800;
 
@@ -51,9 +53,9 @@ public class Application implements MouseListener, ActionListener, Runnable {
         // Set window layout
         window.setLayout(new BorderLayout());
         // Set window border layout
-        window.add(grid, BorderLayout.CENTER);
+        window.add(this, BorderLayout.CENTER);
         // Register for mouse events on grid
-        grid.addMouseListener(this);
+        addMouseListener(this);
         // Disable window resizable
         window.setResizable(false);
 
@@ -120,13 +122,13 @@ public class Application implements MouseListener, ActionListener, Runnable {
     public void mouseReleased(MouseEvent e) {
 
         // The width and height of the grid
-        double width = (double)grid.getWidth() / grid.cells[0].length;
-        double height = (double)grid.getHeight() / grid.cells.length;
+        double width = (double)this.getWidth() / grid.cells.length;
+        double height = (double)this.getHeight() / grid.cells.length;
 
         // The column(X) and row(Y) values
         // Math.min() works out the smallest value to preventing it returning
         // 0 if you click slight off of the screen on the bottom or the right
-        int column = Math.min(grid.cells[0].length - 1,(int)(e.getX() / width));
+        int column = Math.min(grid.cells.length - 1,(int)(e.getX() / width));
         int row = Math.min(grid.cells.length - 1,(int)(e.getY() / height));
         // Prints out the X and Y values to the console for debugging purposes
         System.out.println("X: " + column + ", " + "Y: " + row);
@@ -244,6 +246,37 @@ public class Application implements MouseListener, ActionListener, Runnable {
                 Thread.sleep(gameSpeed);
             } catch (Exception e){
                 e.printStackTrace();
+            }
+        }
+    }
+
+    // Paints graphical components
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        width = (double) this.getWidth() / grid.cells.length;
+        height = (double) this.getHeight() / grid.cells.length;
+
+        /* Drawing the grid */
+
+        // Draws the vertical lines
+        g.setColor(Color.BLACK);
+        for (int x = 0; x < grid.cells.length + 1; x++) {
+            g.drawLine((int) Math.round(x * width), 0, (int) (Math.round(x * width)), this.getHeight());
+        }
+        // Draws the horizontal lines
+        for (int y = 0; y < grid.cells.length + 1; y++) {
+            g.drawLine(0, (int) Math.round(y * height), this.getWidth(), (int) Math.round(y * height));
+        }
+
+        // Drawing the rectangles representing the live cells
+        g.setColor(Color.decode("#DE6918"));
+        for (int x = 0; x < grid.cells.length; x++) {
+            for (int y = 0; y < grid.cells.length; y++) {
+                if (grid.cells[x][y] == true) {
+                    g.fillRect((int) Math.round(y * width), (int) Math.round(x * height),
+                            (int) width + 1, (int) height + 1);
+                }
             }
         }
     }
