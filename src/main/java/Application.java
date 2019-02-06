@@ -12,7 +12,7 @@ import java.awt.event.MouseListener;
  * mouse listener and action listener, as well as the
  * implementation for the front-end GUI using AWT and Swing.
  * Graphical components are also drawn. This is done using a
- * method from Swing called paintComponent. 
+ * method from Swing called paintComponent.
  *
  * @author Lewis Duncan
  *
@@ -20,12 +20,12 @@ import java.awt.event.MouseListener;
 
 public class Application extends JPanel implements MouseListener, ActionListener, Runnable {
 
-    private boolean isRunning = false;
+    private boolean isRunning;
     private long gameSpeed = 300;
-    private double width;
-    private double height;
     private static int windowWidth = 800;
     private static int windowHeight = 800;
+    private double width;
+    private double height;
 
     // Declaration of objects
     private JFrame window;
@@ -275,7 +275,7 @@ public class Application extends JPanel implements MouseListener, ActionListener
         g.setColor(Color.decode("#DE6918"));
         for (int x = 0; x < grid.cells.length; x++) {
             for (int y = 0; y < grid.cells.length; y++) {
-                if (grid.cells[x][y] == true) {
+                if (grid.cells[x][y]) {
                     g.fillRect((int) Math.round(y * width), (int) Math.round(x * height),
                             (int) width + 1, (int) height + 1);
                 }
