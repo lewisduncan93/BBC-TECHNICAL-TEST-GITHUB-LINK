@@ -254,7 +254,6 @@ public class Application extends JPanel implements MouseListener, ActionListener
 
     // Paints graphical components
     public void paintComponent(Graphics g) {
-        super.paintComponent(g);
 
         width = (double) this.getWidth() / grid.cells.length;
         height = (double) this.getHeight() / grid.cells.length;
