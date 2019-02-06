@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.util.Random;
 
 /**
@@ -13,7 +12,7 @@ import java.util.Random;
  *
  */
 
-public class Grid extends JPanel {
+public class Grid {
 
     private static int numberOfRows = 30;
     private static int numberOfColumns = 30;
@@ -78,41 +77,41 @@ public class Grid extends JPanel {
                 int neighbours = 0;
 
                 // Checks left
-                if (x > 0 && cells[x - 1][y] == true) {
+                if (x > 0 && cells[x - 1][y]) {
                     neighbours++;
                 }
                 // Checks right
-                if (x < cells.length - 1 && cells[x + 1][y] == true) {
+                if (x < cells.length - 1 && cells[x + 1][y]) {
                     neighbours++;
                 }
                 // Checks top
-                if (y > 0 && cells[x][y - 1] == true) {
+                if (y > 0 && cells[x][y - 1]) {
                     neighbours++;
                 }
                 // Checks bottom
-                if (y < cells.length - 1 && cells[x][y + 1] == true) {
+                if (y < cells.length - 1 && cells[x][y + 1]) {
                     neighbours++;
                 }
                 // Checks top-left
-                if (x > 0 && y > 0 && cells[x - 1][y - 1] == true) {
+                if (x > 0 && y > 0 && cells[x - 1][y - 1]) {
                     neighbours++;
                 }
                 // Checks top-right
-                if (x < cells.length - 1 && y > 0 && cells[x + 1][y - 1] == true) {
+                if (x < cells.length - 1 && y > 0 && cells[x + 1][y - 1]) {
                     neighbours++;
                 }
                 // Checks bottom-left
-                if (x > 0 && y < cells.length - 1 && cells[x - 1][y + 1] == true){
+                if (x > 0 && y < cells.length - 1 && cells[x - 1][y + 1]){
                     neighbours++;
                 }
                 // Checks bottom-right
-                if (x < cells.length - 1 && y < cells.length - 1 && cells[x + 1][y + 1] == true) {
+                if (x < cells.length - 1 && y < cells.length - 1 && cells[x + 1][y + 1]) {
                     neighbours++;
                 }
 
                 /* Conway's Game of Life */
                 // If this cell is alive (true)
-                if (cells[x][y] == true) {
+                if (cells[x][y]) {
                     // If alive cell has 2 or 3 neighbours then it stays alive, else dead
                     if (neighbours == 2 || neighbours == 3) {
                         // Set this new cell to true
@@ -123,16 +122,14 @@ public class Grid extends JPanel {
                         newCells[x][y] = false;
                     }
                 }
-                else {
-                    // If dead cell has 3 neighbours then create new cell, else dead
-                    if (neighbours == 3) {
+                // If dead cell has 3 neighbours then create new cell, else dead
+                else if (neighbours == 3) {
                         // Set this new cell to true
                         newCells[x][y] = true;
                     } else {
                         // Else set this new cell to false
                         newCells[x][y] = false;
                     }
-                }
             }
         }
         // Update cells with newCells
@@ -140,5 +137,4 @@ public class Grid extends JPanel {
         // Update grid passing the newCells
         setNewCells(newCells);
     }
-
 }
