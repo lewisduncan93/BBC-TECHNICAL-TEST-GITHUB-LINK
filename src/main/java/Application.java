@@ -7,7 +7,7 @@ import java.awt.event.MouseListener;
 
 /**
  * This program is a simulation of John Conway's Game of Life.
- * <p>
+ * 
  * The Application class contains the main method,
  * mouse listener and action listener, as well as the
  * implementation for the front-end GUI using AWT and Swing.
