@@ -21,7 +21,7 @@ import java.awt.event.MouseListener;
 public class Application extends JPanel implements MouseListener, ActionListener, Runnable {
 
     private boolean isRunning;
-    private long delayTime = 300;
+    private long delayTime = 500;
     private static int windowWidth = 800;
     private static int windowHeight = 800;
     private double width;
@@ -259,17 +259,7 @@ public class Application extends JPanel implements MouseListener, ActionListener
         width = (double) this.getWidth() / grid.cells.length;
         height = (double) this.getHeight() / grid.cells.length;
 
-        /* Drawing the grid */
-
-        // Draws the vertical lines
-        g.setColor(Color.BLACK);
-        for (int x = 0; x < grid.cells.length + 1; x++) {
-            g.drawLine((int) Math.round(x * width), 0, (int) (Math.round(x * width)), this.getHeight());
-        }
-        // Draws the horizontal lines
-        for (int y = 0; y < grid.cells.length + 1; y++) {
-            g.drawLine(0, (int) Math.round(y * height), this.getWidth(), (int) Math.round(y * height));
-        }
+        /* Rectangles */
 
         // Drawing the rectangles representing the live cells
         g.setColor(Color.decode("#DE6918"));
@@ -280,6 +270,18 @@ public class Application extends JPanel implements MouseListener, ActionListener
                             (int) width + 1, (int) height + 1);
                 }
             }
+        }
+
+        /* The grid */
+
+        // Draws the vertical lines
+        g.setColor(Color.BLACK);
+        for (int x = 0; x < grid.cells.length + 1; x++) {
+            g.drawLine((int) Math.round(x * width), 0, (int) (Math.round(x * width)), this.getHeight());
+        }
+        // Draws the horizontal lines
+        for (int y = 0; y < grid.cells.length + 1; y++) {
+            g.drawLine(0, (int) Math.round(y * height), this.getWidth(), (int) Math.round(y * height));
         }
     }
 
