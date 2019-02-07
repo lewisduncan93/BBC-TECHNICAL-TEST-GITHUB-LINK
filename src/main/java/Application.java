@@ -7,7 +7,7 @@ import java.awt.event.MouseListener;
 
 /**
  * This program is a simulation of John Conway's Game of Life.
- *
+ * <p>
  * The Application class contains the main method,
  * mouse listener and action listener, as well as the
  * implementation for the front-end GUI using AWT and Swing.
@@ -15,15 +15,15 @@ import java.awt.event.MouseListener;
  * method from Swing called paintComponent.
  *
  * @author Lewis Duncan
- *
  */
 
-public class Application extends JPanel implements MouseListener, ActionListener, Runnable {
+public class Application extends JPanel implements MouseListener, ActionListener, Runnable
+{
 
-    private boolean isRunning;
-    private long delayTime = 500;
     private static int windowWidth = 800;
     private static int windowHeight = 800;
+    private boolean isRunning;
+    private long delayTime = 500;
     private double width;
     private double height;
 
@@ -34,7 +34,8 @@ public class Application extends JPanel implements MouseListener, ActionListener
     private JButton clearCellsButton, randomizeButton, nextStepButton, startButton, stopButton;
     private JLabel generationLabel;
 
-    public Application() {
+    public Application()
+    {
 
         // Initialization of objects
         window = new JFrame("Game of Life");
@@ -62,7 +63,7 @@ public class Application extends JPanel implements MouseListener, ActionListener
         window.setResizable(false);
 
         // Set north container layout
-        north.setLayout(new GridLayout(1,1));
+        north.setLayout(new GridLayout(1, 1));
 
         // Add generation label to north container
         north.add(generationLabel, SwingConstants.CENTER);
@@ -70,7 +71,7 @@ public class Application extends JPanel implements MouseListener, ActionListener
         generationLabel.setFont(new Font("Arial", Font.PLAIN, 18));
 
         // Set south container layout
-        south.setLayout(new GridLayout(1,5));
+        south.setLayout(new GridLayout(1, 5));
 
         // Add next step button to south container
         south.add(nextStepButton);
@@ -110,28 +111,38 @@ public class Application extends JPanel implements MouseListener, ActionListener
         window.setVisible(true);
     }
 
+    // Main method
+    public static void main(String[] args)
+    {
+        // Instantiate Application()
+        new Application();
+    }
+
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mouseClicked(MouseEvent e)
+    {
 
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
+    public void mousePressed(MouseEvent e)
+    {
 
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
+    public void mouseReleased(MouseEvent e)
+    {
 
         // The width and height of the grid
-        double width = (double)this.getWidth() / grid.cells.length;
-        double height = (double)this.getHeight() / grid.cells.length;
+        double width = (double) this.getWidth() / grid.cells.length;
+        double height = (double) this.getHeight() / grid.cells.length;
 
         // The column(X) and row(Y) values
         // Math.min() works out the smallest value to preventing it returning
         // 0 if you click slight off of the screen on the bottom or the right
-        int column = Math.min(grid.cells.length - 1,(int)(e.getX() / width));
-        int row = Math.min(grid.cells.length - 1,(int)(e.getY() / height));
+        int column = Math.min(grid.cells.length - 1, (int) (e.getX() / width));
+        int row = Math.min(grid.cells.length - 1, (int) (e.getY() / height));
         // Prints out the X and Y values to the console for debugging purposes
         System.out.println("X: " + column + ", " + "Y: " + row);
         // Works out the opposite by assigning the value it already has and says NOT (as in opposite)
@@ -141,29 +152,36 @@ public class Application extends JPanel implements MouseListener, ActionListener
     }
 
     @Override
-    public void mouseEntered(MouseEvent e) {
+    public void mouseEntered(MouseEvent e)
+    {
 
     }
 
     @Override
-    public void mouseExited(MouseEvent e) {
+    public void mouseExited(MouseEvent e)
+    {
 
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e)
+    {
 
         // Perform action when next step button is pressed
-        if (e.getSource().equals(nextStepButton)) {
-            if (isRunning == false) {
+        if (e.getSource().equals(nextStepButton))
+        {
+            if (isRunning == false)
+            {
                 nextStepButton();
                 // Repaints the graphics
                 window.repaint();
             }
         }
         // Perform action when start button is pressed
-        if (e.getSource().equals(startButton)) {
-            if (isRunning == false) {
+        if (e.getSource().equals(startButton))
+        {
+            if (isRunning == false)
+            {
                 isRunning = true;
                 // Creates a new thread
                 Thread thread = new Thread(this);
@@ -176,8 +194,10 @@ public class Application extends JPanel implements MouseListener, ActionListener
             }
         }
         // Perform action when stop button is pressed
-        if (e.getSource().equals(stopButton)) {
-            if(isRunning) {
+        if (e.getSource().equals(stopButton))
+        {
+            if (isRunning)
+            {
                 // Enable these buttons
                 nextStepButton.setEnabled(true);
                 clearCellsButton.setEnabled(true);
@@ -186,14 +206,17 @@ public class Application extends JPanel implements MouseListener, ActionListener
             }
         }
         // Perform action when clear cells button is pressed
-        if (e.getSource().equals(clearCellsButton)) {
+        if (e.getSource().equals(clearCellsButton))
+        {
             isRunning = false;
             // Invokes clearCellsButton()
             clearCellsButton();
         }
         // Perform action when randomize button is pressed
-        if (e.getSource().equals(randomizeButton)) {
-            if (isRunning == false) {
+        if (e.getSource().equals(randomizeButton))
+        {
+            if (isRunning == false)
+            {
                 // Invokes randomizeButton()
                 randomizeButton();
             }
@@ -201,7 +224,8 @@ public class Application extends JPanel implements MouseListener, ActionListener
     }
 
     // Clears the existing cells
-    private void clearCellsButton() {
+    private void clearCellsButton()
+    {
         // Invokes clearCells() passing the updateCells() values
         grid.clearCells(grid.updateCells());
         // Invokes resetGeneration()
@@ -213,7 +237,8 @@ public class Application extends JPanel implements MouseListener, ActionListener
     }
 
     // Creates a new random live cells
-    private void randomizeButton() {
+    private void randomizeButton()
+    {
         grid.randomizeCells(grid.updateCells());
         // Invokes resetGeneration()
         grid.resetGeneration();
@@ -224,7 +249,8 @@ public class Application extends JPanel implements MouseListener, ActionListener
     }
 
     // Goes to the next generation (next iteration)
-    private void nextStepButton() {
+    private void nextStepButton()
+    {
         // Invokes checkNeighbours(), passing the updated cells
         grid.checkNeighbours(grid.updateCells());
         // Invokes setGeneration()
@@ -237,24 +263,29 @@ public class Application extends JPanel implements MouseListener, ActionListener
 
     // Runs when thread starts
     @Override
-    public void run() {
+    public void run()
+    {
         // While isRunning is true
-        while(isRunning) {
+        while (isRunning)
+        {
             // Invoke nextStepButton()
             nextStepButton();
             // Repaints the graphics
             window.repaint();
-            try{
+            try
+            {
                 // Slow down by delaying the thread
                 Thread.sleep(delayTime);
-            } catch (Exception e){
+            } catch (Exception e)
+            {
                 e.printStackTrace();
             }
         }
     }
 
     // Paints graphical components
-    public void paintComponent(Graphics g) {
+    public void paintComponent(Graphics g)
+    {
 
         width = (double) this.getWidth() / grid.cells.length;
         height = (double) this.getHeight() / grid.cells.length;
@@ -263,9 +294,12 @@ public class Application extends JPanel implements MouseListener, ActionListener
 
         // Drawing the rectangles representing the live cells
         g.setColor(Color.ORANGE);
-        for (int x = 0; x < grid.cells.length; x++) {
-            for (int y = 0; y < grid.cells.length; y++) {
-                if (grid.cells[x][y]) {
+        for (int x = 0; x < grid.cells.length; x++)
+        {
+            for (int y = 0; y < grid.cells.length; y++)
+            {
+                if (grid.cells[x][y])
+                {
                     g.fillRect((int) Math.round(y * width), (int) Math.round(x * height),
                             (int) width + 1, (int) height + 1);
                 }
@@ -276,18 +310,14 @@ public class Application extends JPanel implements MouseListener, ActionListener
 
         // Draws the vertical lines
         g.setColor(Color.BLACK);
-        for (int x = 0; x < grid.cells.length + 1; x++) {
+        for (int x = 0; x < grid.cells.length + 1; x++)
+        {
             g.drawLine((int) Math.round(x * width), 0, (int) (Math.round(x * width)), this.getHeight());
         }
         // Draws the horizontal lines
-        for (int y = 0; y < grid.cells.length + 1; y++) {
+        for (int y = 0; y < grid.cells.length + 1; y++)
+        {
             g.drawLine(0, (int) Math.round(y * height), this.getWidth(), (int) Math.round(y * height));
         }
-    }
-
-    // Main method
-    public static void main(String[] args) {
-        // Instantiate Application()
-        new Application();
     }
 }
