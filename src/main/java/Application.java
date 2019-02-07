@@ -21,7 +21,7 @@ import java.awt.event.MouseListener;
 public class Application extends JPanel implements MouseListener, ActionListener, Runnable {
 
     private boolean isRunning;
-    private long gameSpeed = 300;
+    private long delayTime = 300;
     private static int windowWidth = 800;
     private static int windowHeight = 800;
     private double width;
@@ -245,7 +245,8 @@ public class Application extends JPanel implements MouseListener, ActionListener
             // Repaints the graphics
             window.repaint();
             try{
-                Thread.sleep(gameSpeed);
+                // Slow down by delaying the thread
+                Thread.sleep(delayTime);
             } catch (Exception e){
                 e.printStackTrace();
             }
