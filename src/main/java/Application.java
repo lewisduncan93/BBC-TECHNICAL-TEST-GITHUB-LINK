@@ -262,7 +262,7 @@ public class Application extends JPanel implements MouseListener, ActionListener
         /* Rectangles */
 
         // Drawing the rectangles representing the live cells
-        g.setColor(Color.decode("#DE6918"));
+        g.setColor(Color.ORANGE);
         for (int x = 0; x < grid.cells.length; x++) {
             for (int y = 0; y < grid.cells.length; y++) {
                 if (grid.cells[x][y]) {
